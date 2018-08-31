@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="lang">Bonjour!</string>
+    <string name="toWin">Pour gagner:</string>
+    <string name="height">Hauteur:</string>
+    <string name="width">Largeur:</string>
 </resources>
