@@ -1,15 +1,15 @@
 package ca.cours5b5.wernerburat.vues;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.util.Log;
 
 import ca.cours5b5.wernerburat.R;
 import ca.cours5b5.wernerburat.global.GConstantes;
 
-public class VParametres extends ConstraintLayout{
+public class VParametres extends Vue{
 
     public VParametres(Context context) {
         super(context);
@@ -23,9 +23,15 @@ public class VParametres extends ConstraintLayout{
         super(context, attrs, defStyleAttr);
     }
 
+    static{
+        Log.d("Atelier04", VParametres.class.getSimpleName() + "::static");
+    }
+
     @Override
     protected void onFinishInflate(){
         super.onFinishInflate();
+
+        Log.d("Atelier04", VParametres.class.getSimpleName() + "::onFinishInflate");
 
         Spinner spinnerHauteur = this.findViewById(R.id.spinnerHeight);
         ArrayAdapter<Integer> adapterHauteur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);

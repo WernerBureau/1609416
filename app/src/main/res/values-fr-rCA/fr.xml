@@ -4,4 +4,5 @@
     <string name="toWin">Pour gagner:</string>
     <string name="height">Hauteur:</string>
     <string name="width">Largeur:</string>
+    <string name="btnParametres">Paramètres</string>
 </resources>
