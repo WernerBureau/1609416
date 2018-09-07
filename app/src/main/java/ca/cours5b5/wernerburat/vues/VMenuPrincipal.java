@@ -29,7 +29,7 @@ public class VMenuPrincipal extends Vue {
     protected void onFinishInflate(){
         super.onFinishInflate();
         Log.d("Atelier04", VMenuPrincipal.class.getSimpleName() + "::onFinishInflate");
-        Button boutonParametres = this.findViewById(R.id.btnParametres);
+        //Button boutonParametres = this.findViewById(R.id.btnParametres);
     }
 
 }
