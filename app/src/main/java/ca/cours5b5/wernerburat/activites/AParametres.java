@@ -33,7 +33,7 @@ public class AParametres extends Activite {
     protected void onSaveInstanceState(Bundle outState){
         Log.d("Atelier04", AParametres.class.getSimpleName() + "::onSaveInstanceState");
         super.onSaveInstanceState(outState);
-        outState.putInt("cle",18);
+        outState.putInt("MaCle",18);
     }
     @Override
     protected void onDestroy() {

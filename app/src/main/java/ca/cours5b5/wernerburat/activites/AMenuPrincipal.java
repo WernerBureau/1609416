@@ -35,7 +35,7 @@ public class AMenuPrincipal extends Activite {
     protected void onSaveInstanceState(Bundle outState){
         Log.d("Atelier04", AMenuPrincipal.class.getSimpleName() + "::onSaveInstanceState");
         super.onSaveInstanceState(outState);
-        outState.putInt("cle",18);
+        outState.putInt("MaCle",18);
     }
 
     @Override

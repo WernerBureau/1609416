@@ -1,4 +1,8 @@
 package ca.cours5b5.wernerburat.donnees;
 
-public interface Sauvegardable {
+import ca.cours5b5.wernerburat.serialisation.Constructible;
+import ca.cours5b5.wernerburat.serialisation.Serialisable;
+
+public interface Sauvegardable extends Constructible, Serialisable {
+
 }
