@@ -48,17 +48,17 @@ public class VParametres extends Vue{
         ArrayAdapter<Integer> adapterPourGagner = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
         spinnerPourGagner.setAdapter(adapterPourGagner);
 
-//        for (int i = GConstantes.HAUTEURMIN; i <= GConstantes.HAUTEURMAX; i++){
-//            adapterHauteur.add(i);
-//        }
-//
-//        for (int i = GConstantes.LARGEURMIN; i <= GConstantes.LARGEURMAX; i++){
-//            adapterLargeur.add(i);
-//        }
-//
-//        for (int i = GConstantes.GAGNERMIN; i <= GConstantes.GAGNERMAX; i++){
-//            adapterPourGagner.add(i);
-//        }
+        for (int i = GConstantes.HAUTEURMIN; i <= GConstantes.HAUTEURMAX; i++){
+            adapterHauteur.add(i);
+        }
+
+        for (int i = GConstantes.LARGEURMIN; i <= GConstantes.LARGEURMAX; i++){
+            adapterLargeur.add(i);
+        }
+
+        for (int i = GConstantes.GAGNERMIN; i <= GConstantes.GAGNERMAX; i++){
+            adapterPourGagner.add(i);
+        }
 
         spinnerHauteur.setSelection(adapterHauteur.getPosition(GConstantes.HAUTEURDEFAUT));
         spinnerLargeur.setSelection(adapterLargeur.getPosition(GConstantes.LARGEURDEFAUT));

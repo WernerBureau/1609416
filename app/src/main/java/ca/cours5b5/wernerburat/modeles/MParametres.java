@@ -103,18 +103,19 @@ public class MParametres extends Modele{
 
     //Récupérer
     @Override
-    public void aPartirObjetJson(Map<String, Object> objectJson) {
-        for(Map.Entry entry : objectJson.entrySet()){
+    public void aPartirObjetJson(Map<String, Object> objetJson) {
 
-            if(entry.getKey().equals("hauteur")){
+        for(Map.Entry entry : objetJson.entrySet()){
+
+            if(entry.getKey().equals(__hauteur)){
                 hauteur = Integer.valueOf((String)entry.getValue());
             }
 
-            else if(entry.getKey().equals("largeur")){
+            else if(entry.getKey().equals(__largeur)){
                 largeur = Integer.valueOf((String)entry.getValue());
             }
 
-            else if(entry.getKey().equals("pourGagner")){
+            else if(entry.getKey().equals(__pourGagner)){
                 pourGagner = Integer.valueOf((String)entry.getValue());
             }
         }
@@ -126,9 +127,9 @@ public class MParametres extends Modele{
 
         Map<String, Object> objetJson = new HashMap<>();
 
-        objetJson.put(__hauteur, hauteur);
-        objetJson.put(__largeur, largeur);
-        objetJson.put(__pourGagner, pourGagner);
+        objetJson.put(__hauteur, hauteur.toString());
+        objetJson.put(__largeur, largeur.toString());
+        objetJson.put(__pourGagner, pourGagner.toString());
 
         return objetJson;
     }

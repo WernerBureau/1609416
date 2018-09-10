@@ -1,5 +1,7 @@
 package ca.cours5b5.wernerburat.serialisation;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -16,33 +18,31 @@ public class Jsonification {
         Map<String, Object> objetJson = gson.fromJson(json, Map.class);
 
         // si l'objet est un MParametres
-        if(objetJson.getClass().getSimpleName().equals(MParametres.class.getSimpleName())){
-
-            MParametres mParametres = new MParametres();
-
-            mParametres.aPartirObjetJson(objetJson);
+//        if(objetJson.getClass().getSimpleName().equals(MParametres.class.getSimpleName())){
+//
+//            MParametres mParametres = new MParametres();
+//
+//            mParametres.aPartirObjetJson(objetJson);
 
             return objetJson;
-        }
-
-        return null;
-
+//        }
+//        return null;
     }
 
     // enJson : sérialiser
     // Sérialiser :    Modele ==>  Map<String, Object>   ==>  .json
     public static String enChaine(Map<String, Object> objetJson){
         // si l'objet est un MParametres
-        if(objetJson instanceof MParametres){
-
-            MParametres mParametres = (MParametres) objetJson;
-
-            objetJson  = mParametres.enObjetJson();
+//        if(objetJson instanceof MParametres){
+//
+//            MParametres mParametres = (MParametres) objetJson;
+//
+//            objetJson  = mParametres.enObjetJson();
             return gson.toJson(objetJson);
-        }
-
-
-        return null;
+//        }
+//
+//
+//        return null;
     }
 
 //    private static <T extends Serialisable> T aPartirJson(Serialisable obj, String json){
