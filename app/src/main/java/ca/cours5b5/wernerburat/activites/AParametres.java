@@ -46,13 +46,13 @@ public class AParametres extends Activite {
         super.onSaveInstanceState(outState);
 
         //Sauvegarder les données
-        MParametres modeleParametres = new MParametres();
-        Map<String, Object> objetJson = modeleParametres.enObjetJson();
+        Map<String, Object> objetJson = MParametres.instance.enObjetJson();
 
         String json = Jsonification.enChaine(objetJson);
 
         outState.putString("MaCle", json);
-        Log.d("json", json);
+
+        Log.d("Atelier05", json);
     }
     @Override
     protected void onDestroy() {

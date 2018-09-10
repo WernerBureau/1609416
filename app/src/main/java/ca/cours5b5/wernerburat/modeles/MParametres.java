@@ -10,13 +10,14 @@ import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.wernerburat.R;
+import ca.cours5b5.wernerburat.exceptions.ErreurDeSerialisation;
 import ca.cours5b5.wernerburat.global.GConstantes;
 import ca.cours5b5.wernerburat.serialisation.AttributSerialisable;
 import ca.cours5b5.wernerburat.vues.VParametres;
 
 public class MParametres extends Modele{
 
-    public static MParametres instance;
+    public static MParametres instance = new MParametres();
 
     @AttributSerialisable
     public Integer hauteur;
@@ -58,8 +59,6 @@ public class MParametres extends Modele{
 
         genererListesDeChoix();
     }
-
-
 
     public Integer getHauteur(){
         return this.hauteur;
@@ -104,7 +103,6 @@ public class MParametres extends Modele{
     //Récupérer
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) {
-
         for(Map.Entry entry : objetJson.entrySet()){
 
             if(entry.getKey().equals(__hauteur)){
