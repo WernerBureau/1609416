@@ -52,6 +52,7 @@ public class AParametres extends Activite {
         String json = Jsonification.enChaine(objetJson);
 
         outState.putString("MaCle", json);
+        Log.d("json", json);
     }
     @Override
     protected void onDestroy() {
