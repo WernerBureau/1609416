@@ -20,16 +20,31 @@ public class MParametres extends Modele{
 
     @AttributSerialisable
     public Integer hauteur;
+    private final String __hauteur = "hauteur";
 
     @AttributSerialisable
     public Integer largeur;
+    private final String __largeur = "largeur";
 
     @AttributSerialisable
     public Integer pourGagner;
+    private final String __pourGagner = "pourGagner";
 
     private List<Integer> choixHauteur;
     private List<Integer> choixLargeur;
     private List<Integer> choixPourGagner;
+
+    public List<Integer> getChoixHauteur(){
+        return this.choixHauteur;
+    }
+
+    public List<Integer> getChoixLargeur(){
+        return this.choixLargeur;
+    }
+
+    public List<Integer> getChoixPourGagner(){
+        return this.choixPourGagner;
+    }
 
 
     public MParametres() {
@@ -44,17 +59,7 @@ public class MParametres extends Modele{
         genererListesDeChoix();
     }
 
-    public List<Integer> getChoixHauteur(){
-        return this.choixHauteur;
-    }
 
-    public List<Integer> getChoixLargeur(){
-        return this.choixLargeur;
-    }
-
-    public List<Integer> getChoixPourGagner(){
-        return this.choixPourGagner;
-    }
 
     public Integer getHauteur(){
         return this.hauteur;
@@ -96,7 +101,9 @@ public class MParametres extends Modele{
         return liste;
     }
 
-    public void deserialiser(Map<String, Object> objectJson) {
+    //Récupérer
+    @Override
+    public void aPartirObjetJson(Map<String, Object> objectJson) {
         for(Map.Entry entry : objectJson.entrySet()){
 
             if(entry.getKey().equals("hauteur")){
@@ -113,14 +120,15 @@ public class MParametres extends Modele{
         }
     }
 
-
-    public Map<String, Object> serialiser() {
+    //Sauvegarder
+    @Override
+    public Map<String, Object> enObjetJson() {
 
         Map<String, Object> objetJson = new HashMap<>();
 
-        objetJson.put("hauteur", hauteur);
-        objetJson.put("largeur", largeur);
-        objetJson.put("pourGagner", pourGagner);
+        objetJson.put(__hauteur, hauteur);
+        objetJson.put(__largeur, largeur);
+        objetJson.put(__pourGagner, pourGagner);
 
         return objetJson;
     }

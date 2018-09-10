@@ -12,20 +12,17 @@ public class Jsonification {
 
     // aPartirJson : desérialiser
     // Désérialiser :   .json   ===>  Map<String, Object>  ===>  Modele
-    public static <T extends Serialisable> T aPartirJson(Class<T> classeAImplanter, String json){
-
-
+    public static Map<String, Object> enObjetJson(String json){
         Map<String, Object> objetJson = gson.fromJson(json, Map.class);
 
         // si l'objet est un MParametres
-        if(classeAImplanter.getSimpleName().equals(MParametres.class.getSimpleName())){
+        if(objetJson.getClass().getSimpleName().equals(MParametres.class.getSimpleName())){
 
             MParametres mParametres = new MParametres();
 
-            mParametres.deserialiser(objetJson);
+            mParametres.aPartirObjetJson(objetJson);
 
-
-            return (T) mParametres;
+            return objetJson;
         }
 
         return null;
@@ -34,13 +31,13 @@ public class Jsonification {
 
     // enJson : sérialiser
     // Sérialiser :    Modele ==>  Map<String, Object>   ==>  .json
-    public static String enJson(Serialisable obj){
+    public static String enChaine(Map<String, Object> objetJson){
+        // si l'objet est un MParametres
+        if(objetJson instanceof MParametres){
 
-        if(obj instanceof MParametres){
+            MParametres mParametres = (MParametres) objetJson;
 
-            MParametres mParametres = (MParametres) obj;
-
-            Map<String, Object> objetJson  = mParametres.serialiser();
+            objetJson  = mParametres.enObjetJson();
             return gson.toJson(objetJson);
         }
 

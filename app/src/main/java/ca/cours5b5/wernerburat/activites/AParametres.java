@@ -3,7 +3,11 @@ package ca.cours5b5.wernerburat.activites;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.util.Map;
+
 import ca.cours5b5.wernerburat.R;
+import ca.cours5b5.wernerburat.modeles.MParametres;
+import ca.cours5b5.wernerburat.serialisation.Jsonification;
 
 public class AParametres extends Activite {
     static{
@@ -15,8 +19,15 @@ public class AParametres extends Activite {
         Log.d("Atelier04", AParametres.class.getSimpleName() + "::onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parametres);
-
         Log.d("logmessage", this.getResources().getString(R.string.lang) + " (" + this.getResources().getString(R.string.orientation) + ")");
+
+        if(savedInstanceState != null){
+            String json = savedInstanceState.getString("MaCle");
+            Map<String, Object> objetJson = Jsonification.enObjetJson(json);
+
+            MParametres modeleParametres = new MParametres();
+            modeleParametres.aPartirObjetJson(objetJson);
+        }
     }
 
     @Override
@@ -33,7 +44,14 @@ public class AParametres extends Activite {
     protected void onSaveInstanceState(Bundle outState){
         Log.d("Atelier04", AParametres.class.getSimpleName() + "::onSaveInstanceState");
         super.onSaveInstanceState(outState);
-        outState.putInt("MaCle",18);
+
+        //Sauvegarder les données
+        MParametres modeleParametres = new MParametres();
+        Map<String, Object> objetJson = modeleParametres.enObjetJson();
+
+        String json = Jsonification.enChaine(objetJson);
+
+        outState.putString("MaCle", json);
     }
     @Override
     protected void onDestroy() {
