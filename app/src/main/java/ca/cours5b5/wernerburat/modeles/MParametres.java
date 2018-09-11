@@ -1,19 +1,12 @@
 package ca.cours5b5.wernerburat.modeles;
 
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import ca.cours5b5.wernerburat.R;
-import ca.cours5b5.wernerburat.exceptions.ErreurDeSerialisation;
 import ca.cours5b5.wernerburat.global.GConstantes;
 import ca.cours5b5.wernerburat.serialisation.AttributSerialisable;
-import ca.cours5b5.wernerburat.vues.VParametres;
 
 public class MParametres extends Modele{
 
@@ -61,15 +54,15 @@ public class MParametres extends Modele{
     }
 
     public Integer getHauteur(){
-        return this.hauteur;
+        return hauteur;
     }
 
     public Integer getLargeur(){
-        return this.largeur;
+        return largeur;
     }
 
     public Integer getPourGagner(){
-        return this.pourGagner;
+        return pourGagner;
     }
 
     public void setHauteur(int hauteur){

@@ -25,8 +25,7 @@ public class AParametres extends Activite {
             String json = savedInstanceState.getString("MaCle");
             Map<String, Object> objetJson = Jsonification.enObjetJson(json);
 
-            MParametres modeleParametres = new MParametres();
-            modeleParametres.aPartirObjetJson(objetJson);
+            MParametres.instance.aPartirObjetJson(objetJson);
         }
     }
 
@@ -47,11 +46,8 @@ public class AParametres extends Activite {
 
         //Sauvegarder les données
         Map<String, Object> objetJson = MParametres.instance.enObjetJson();
-
         String json = Jsonification.enChaine(objetJson);
-
         outState.putString("MaCle", json);
-
         Log.d("Atelier05", json);
     }
     @Override

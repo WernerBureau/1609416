@@ -61,9 +61,14 @@ public class VParametres extends Vue{
             adapterPourGagner.add(i);
         }
 
-        spinnerHauteur.setSelection(adapterHauteur.getPosition(GConstantes.HAUTEURDEFAUT));
-        spinnerLargeur.setSelection(adapterLargeur.getPosition(GConstantes.LARGEURDEFAUT));
-        spinnerPourGagner.setSelection(adapterPourGagner.getPosition(GConstantes.GAGNERDEFAUT));
+
+        spinnerHauteur.setSelection(adapterHauteur.getPosition(MParametres.instance.getHauteur()));
+
+        spinnerLargeur.setSelection(adapterLargeur.getPosition(MParametres.instance.getLargeur()));
+
+        spinnerPourGagner.setSelection(adapterPourGagner.getPosition(MParametres.instance.getPourGagner()));
+
+
 
         spinnerHauteur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
