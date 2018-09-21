@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import ca.cours5b5.wernerburat.R;
+import ca.cours5b5.wernerburat.controleurs.Action;
+import ca.cours5b5.wernerburat.controleurs.ControleurAction;
+import ca.cours5b5.wernerburat.global.GCommande;
 import ca.cours5b5.wernerburat.global.GConstantes;
 import ca.cours5b5.wernerburat.modeles.MParametres;
 
@@ -73,8 +76,13 @@ public class VParametres extends Vue{
         spinnerHauteur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                Action actionHauteur = ControleurAction.demanderAction(GCommande.CHOISIR_HAUTEUR);
+
                 Integer choixHauteur = (Integer) parent.getAdapter().getItem(position);
                 MParametres.instance.setHauteur(choixHauteur);
+
+                actionHauteur.setArguments(choixHauteur);
+                actionHauteur.executerDesQuePossible();
             }
 
             @Override
@@ -86,8 +94,13 @@ public class VParametres extends Vue{
         spinnerLargeur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+                Action actionLargeur = ControleurAction.demanderAction(GCommande.CHOISIR_LARGEUR);
+
                 Integer choixLargeur = (Integer) parent.getAdapter().getItem(position);
                 MParametres.instance.setLargeur(choixLargeur);
+
+                actionLargeur.setArguments(choixLargeur);
+                actionLargeur.executerDesQuePossible();
             }
 
             @Override
@@ -99,8 +112,13 @@ public class VParametres extends Vue{
         spinnerPourGagner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
-                Integer spinnerPourGagner = (Integer) parent.getAdapter().getItem(position);
-                MParametres.instance.setPourGagner(spinnerPourGagner);
+                Action actionPourGagner = ControleurAction.demanderAction(GCommande.CHOISIR_POUR_GAGNER);
+
+                Integer choixPourGagner = (Integer) parent.getAdapter().getItem(position);
+                MParametres.instance.setPourGagner(choixPourGagner);
+
+                actionPourGagner.setArguments(choixPourGagner);
+                actionPourGagner.executerDesQuePossible();
             }
 
             @Override

@@ -1,5 +1,7 @@
 package ca.cours5b5.wernerburat.controleurs;
 
+import android.util.Log;
+
 import ca.cours5b5.wernerburat.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerFournisseur;
 
@@ -12,7 +14,7 @@ public class Action {
 
     public void setArguments(Object... args){
         this.args = args;
-
+        Log.d("Atelier06",args.toString());
 
     }
 
