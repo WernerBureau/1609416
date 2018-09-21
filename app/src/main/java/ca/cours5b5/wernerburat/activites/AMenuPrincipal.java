@@ -6,8 +6,12 @@ import android.view.View;
 import android.os.Bundle;
 
 import ca.cours5b5.wernerburat.R;
+import ca.cours5b5.wernerburat.controleurs.ControleurAction;
+import ca.cours5b5.wernerburat.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.wernerburat.global.GCommande;
 
-public class AMenuPrincipal extends Activite {
+public class AMenuPrincipal extends Activite implements Fournisseur{
     static{
         Log.d("Atelier04", AMenuPrincipal.class.getSimpleName() + "::static");
     }
@@ -17,6 +21,13 @@ public class AMenuPrincipal extends Activite {
         Log.d("Atelier04", AMenuPrincipal.class.getSimpleName() + "::onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menuprincipal);
+
+        ControleurAction.fournirAction(this, GCommande.OUVRIR_MENU_PARAMETRES, new ListenerFournisseur() {
+            @Override
+            public void executer(Object... args) {
+                goToAnActivity();
+            }
+        });
     }
 
     @Override
@@ -44,7 +55,7 @@ public class AMenuPrincipal extends Activite {
         super.onDestroy();
     }
 
-    public void goToAnActivity(View view){
+    public void goToAnActivity(){
         Intent monIntention = new Intent(this, AParametres.class);
         this.startActivity(monIntention);
     }

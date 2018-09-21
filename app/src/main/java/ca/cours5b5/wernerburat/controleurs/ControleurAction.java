@@ -24,15 +24,51 @@ public class ControleurAction {
     }
 
     public static Action demanderAction(GCommande commande){
+
         return actions.get(commande);
     }
 
     public static void fournirAction(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur){
-        listenerFournisseur.executer();
+        Action action = demanderAction(commande);
+        action.fournisseur = fournisseur;
+        action.listenerFournisseur = listenerFournisseur;
+
+        executerActionsExecutables();
     }
 
     static void executerDesQuePossible(Action action){
+
         fileAttenteExecution.add(action);
-        //fileAttenteExecution.
+        executerActionsExecutables();
+    }
+
+    private static void executerActionsExecutables(){
+        for (Action action:fileAttenteExecution) {
+            if (siActionExecutable(action)){
+                fileAttenteExecution.remove(action);
+                executerMaintenant(action);
+            }
+        }
+    }
+
+    static boolean siActionExecutable(Action action){
+
+        return (action.listenerFournisseur != null);
+    }
+
+    private static void lancerObservationSiApplicable(Action action){
+
+    }
+
+    private static synchronized void executerMaintenant(Action action){
+        action.listenerFournisseur.executer();
+    }
+
+    private static void enregistrerFournisseur(Fournisseur fournisseur, GCommande commande, ListenerFournisseur listenerFournisseur){
+
+    }
+
+    private static void ajouterActionEnFileDAttente(Action action){
+
     }
 }
