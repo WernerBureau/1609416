@@ -14,7 +14,6 @@ public class Action {
 
     public void setArguments(Object... args){
         this.args = args;
-        Log.d("Atelier06",args.toString());
 
     }
 
@@ -25,6 +24,13 @@ public class Action {
     }
 
     public Action cloner(){
-        return null;
+        Action action = new Action();
+
+        if (args!=null)
+            action.setArguments(args.clone());
+
+        action.fournisseur=fournisseur;
+        action.listenerFournisseur=listenerFournisseur;
+        return action;
     }
 }

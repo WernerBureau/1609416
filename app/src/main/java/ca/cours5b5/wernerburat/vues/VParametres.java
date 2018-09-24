@@ -12,9 +12,12 @@ import android.widget.Spinner;
 import ca.cours5b5.wernerburat.R;
 import ca.cours5b5.wernerburat.controleurs.Action;
 import ca.cours5b5.wernerburat.controleurs.ControleurAction;
+import ca.cours5b5.wernerburat.controleurs.ControleurObservation;
+import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.wernerburat.global.GCommande;
 import ca.cours5b5.wernerburat.global.GConstantes;
 import ca.cours5b5.wernerburat.modeles.MParametres;
+import ca.cours5b5.wernerburat.modeles.Modele;
 
 public class VParametres extends Vue{
 
@@ -30,6 +33,14 @@ public class VParametres extends Vue{
         super(context, attrs, defStyleAttr);
     }
 
+    private Spinner spinnerHauteur;
+    private Spinner spinnerLargeur;
+    private Spinner spinnerPourGagner;
+
+    private ArrayAdapter<Integer> adapterHauteur;
+    private ArrayAdapter<Integer> adapterLargeur;
+    private ArrayAdapter<Integer> adapterPourGagner;
+
     static{
         Log.d("Atelier04", VParametres.class.getSimpleName() + "::static");
     }
@@ -40,38 +51,25 @@ public class VParametres extends Vue{
 
         Log.d("Atelier04", VParametres.class.getSimpleName() + "::onFinishInflate");
 
-        Spinner spinnerHauteur = this.findViewById(R.id.spinnerHeight);
-        ArrayAdapter<Integer> adapterHauteur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
+        spinnerHauteur = this.findViewById(R.id.spinnerHeight);
+        adapterHauteur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
         spinnerHauteur.setAdapter(adapterHauteur);
 
-        Spinner spinnerLargeur = this.findViewById(R.id.spinnerWidth);
-        ArrayAdapter<Integer> adapterLargeur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
+        spinnerLargeur = this.findViewById(R.id.spinnerWidth);
+        adapterLargeur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
         spinnerLargeur.setAdapter(adapterLargeur);
 
-        Spinner spinnerPourGagner = this.findViewById(R.id.spinnerToWin);
-        ArrayAdapter<Integer> adapterPourGagner = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
+        spinnerPourGagner = this.findViewById(R.id.spinnerToWin);
+        adapterPourGagner = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
         spinnerPourGagner.setAdapter(adapterPourGagner);
 
-        for (int i = GConstantes.HAUTEURMIN; i <= GConstantes.HAUTEURMAX; i++){
-            adapterHauteur.add(i);
-        }
-
-        for (int i = GConstantes.LARGEURMIN; i <= GConstantes.LARGEURMAX; i++){
-            adapterLargeur.add(i);
-        }
-
-        for (int i = GConstantes.GAGNERMIN; i <= GConstantes.GAGNERMAX; i++){
-            adapterPourGagner.add(i);
-        }
-
+        adapterHauteur.addAll(MParametres.instance.getChoixHauteur());
+        adapterLargeur.addAll(MParametres.instance.getChoixLargeur());
+        adapterPourGagner.addAll(MParametres.instance.getChoixPourGagner());
 
         spinnerHauteur.setSelection(adapterHauteur.getPosition(MParametres.instance.getHauteur()));
-
         spinnerLargeur.setSelection(adapterLargeur.getPosition(MParametres.instance.getLargeur()));
-
         spinnerPourGagner.setSelection(adapterPourGagner.getPosition(MParametres.instance.getPourGagner()));
-
-
 
         spinnerHauteur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
@@ -126,5 +124,26 @@ public class VParametres extends Vue{
 
             }
         });
+
+        //Observateur; réagir au changement
+        ControleurObservation.observerModele(MParametres.class.getSimpleName(),
+                new ListenerObservateur() {
+                    @Override
+                    public void reagirChangementAuModele(Modele modele) {
+
+                        afficherParametres((MParametres)modele);
+                    }
+                });
+
+    }
+    private void afficherParametres(MParametres modele){
+        adapterHauteur.clear();
+        adapterHauteur.addAll(modele.getChoixHauteur());
+
+        adapterLargeur.clear();
+        adapterLargeur.addAll(modele.getChoixLargeur());
+
+        adapterPourGagner.clear();
+        adapterPourGagner.addAll(modele.getChoixPourGagner());
     }
 }

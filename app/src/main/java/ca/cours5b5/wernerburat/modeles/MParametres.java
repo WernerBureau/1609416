@@ -5,10 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import ca.cours5b5.wernerburat.controleurs.ControleurAction;
+import ca.cours5b5.wernerburat.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerFournisseur;
+import ca.cours5b5.wernerburat.global.GCommande;
 import ca.cours5b5.wernerburat.global.GConstantes;
 import ca.cours5b5.wernerburat.serialisation.AttributSerialisable;
 
-public class MParametres extends Modele{
+import static java.lang.StrictMath.max;
+
+public class MParametres extends Modele implements Fournisseur{
 
     public static MParametres instance = new MParametres();
 
@@ -46,9 +52,9 @@ public class MParametres extends Modele{
         largeur = GConstantes.LARGEURDEFAUT;
         pourGagner = GConstantes.HAUTEURDEFAUT;
 
-        choixHauteur = new ArrayList<Integer>();
-        choixLargeur = new ArrayList<Integer>();
-        choixPourGagner = new ArrayList<Integer>();
+        choixHauteur = new ArrayList<>();
+        choixLargeur = new ArrayList<>();
+        choixPourGagner = new ArrayList<>();
 
         genererListesDeChoix();
     }
@@ -78,10 +84,42 @@ public class MParametres extends Modele{
     }
 
     private void genererListesDeChoix(){
+
         choixHauteur = genererListeChoix(GConstantes.HAUTEURMIN, GConstantes.HAUTEURMAX);
         choixLargeur = genererListeChoix(GConstantes.LARGEURMIN, GConstantes.LARGEURMAX);
-        choixPourGagner = genererListeChoix(GConstantes.GAGNERMIN, GConstantes.GAGNERMAX);
+        choixPourGagner = genererListeChoix(GConstantes.GAGNERMIN, max(hauteur, largeur) * 75 / 100);
 
+        fournirActions();
+    }
+    private void fournirActions(){
+        ControleurAction.fournirAction(this,
+                GCommande.CHOISIR_HAUTEUR,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        setHauteur((int) args[0]);
+                        choixPourGagner = genererListeChoix(GConstantes.GAGNERMIN, max(hauteur, largeur) * 75 / 100);
+                    }
+                });
+
+        ControleurAction.fournirAction(this,
+                GCommande.CHOISIR_LARGEUR,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        setLargeur((int) args[0]);
+                        choixPourGagner = genererListeChoix(GConstantes.GAGNERMIN, max(hauteur, largeur) * 75 / 100);
+                    }
+                });
+
+        ControleurAction.fournirAction(this,
+                GCommande.CHOISIR_POUR_GAGNER,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        setPourGagner((int) args[0]);
+                    }
+                });
     }
 
     private List<Integer> genererListeChoix(int min, int max){
@@ -126,16 +164,16 @@ public class MParametres extends Modele{
     }
 
 
-//    private void genererListeChoixHauteur(){
-//
-//    }
-//
-//    private void genererListeChoixLargeur(){
-//
-//    }
-//
-//    private void genererListeChoixPourGagner(){
-//
-//    }
+    private void genererListeChoixHauteur(){
+
+    }
+
+    private void genererListeChoixLargeur(){
+
+    }
+
+    private void genererListeChoixPourGagner(){
+
+    }
 
 }
