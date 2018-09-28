@@ -20,12 +20,12 @@ public class ControleurObservation {
 
         if (nomModele.equals("MParametres")) {
             observations.put(MParametres.instance, listenerObservateur);
-            lancerObservation(MParametres.instance);
+            lancerObservationPremiereFois(MParametres.instance);
         }
 
-        else {
+        else if (nomModele.equals("MPartie")){
             observations.put(ControleurObservation.partie, listenerObservateur);
-            lancerObservation(ControleurObservation.partie);
+            lancerObservationPremiereFois(ControleurObservation.partie);
         }
 
     }
@@ -34,6 +34,13 @@ public class ControleurObservation {
         ListenerObservateur listenerObservateur = observations.get(modele);
         if (listenerObservateur != null) {
             listenerObservateur.reagirChangementAuModele(modele);
+        }
+    }
+
+    public static void lancerObservationPremiereFois(Modele modele){
+        ListenerObservateur listenerObservateur = observations.get(modele);
+        if (listenerObservateur != null) {
+            listenerObservateur.reagirNouveauModele(modele);
         }
     }
 }
