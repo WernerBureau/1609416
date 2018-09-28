@@ -29,12 +29,14 @@ public class AMenuPrincipal extends Activite implements Fournisseur{
             }
         });
 
+
         ControleurAction.fournirAction(this, GCommande.OUVRIR_PARTIE, new ListenerFournisseur() {
             @Override
             public void executer(Object... args) {
                 goToPartie();
             }
         });
+
     }
 
     @Override

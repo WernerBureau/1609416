@@ -18,7 +18,7 @@ public class ControleurObservation {
 
     public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
 
-        if (nomModele.contains(MParametres.class.getSimpleName())) {
+        if (nomModele.equals("MParametres")) {
             observations.put(MParametres.instance, listenerObservateur);
             lancerObservation(MParametres.instance);
         }

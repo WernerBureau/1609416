@@ -33,10 +33,6 @@ public class VParametres extends Vue{
         super(context, attrs, defStyleAttr);
     }
 
-    private Spinner spinnerHauteur;
-    private Spinner spinnerLargeur;
-    private Spinner spinnerPourGagner;
-
     private ArrayAdapter<Integer> adapterHauteur;
     private ArrayAdapter<Integer> adapterLargeur;
     private ArrayAdapter<Integer> adapterPourGagner;
@@ -50,6 +46,10 @@ public class VParametres extends Vue{
         super.onFinishInflate();
 
         Log.d("Atelier04", VParametres.class.getSimpleName() + "::onFinishInflate");
+
+        Spinner spinnerHauteur;
+        Spinner spinnerLargeur;
+        Spinner spinnerPourGagner;
 
         spinnerHauteur = this.findViewById(R.id.spinnerHeight);
         adapterHauteur = new ArrayAdapter<>(this.getContext(), R.layout.support_simple_spinner_dropdown_item);
