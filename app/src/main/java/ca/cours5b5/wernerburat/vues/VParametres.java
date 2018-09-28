@@ -67,9 +67,9 @@ public class VParametres extends Vue{
         adapterLargeur.addAll(MParametres.instance.getChoixLargeur());
         adapterPourGagner.addAll(MParametres.instance.getChoixPourGagner());
 
-        spinnerHauteur.setSelection(adapterHauteur.getPosition(MParametres.instance.getHauteur()));
-        spinnerLargeur.setSelection(adapterLargeur.getPosition(MParametres.instance.getLargeur()));
-        spinnerPourGagner.setSelection(adapterPourGagner.getPosition(MParametres.instance.getPourGagner()));
+        spinnerHauteur.setSelection(adapterHauteur.getPosition(MParametres.instance.getParametresPartie().getHauteur()));
+        spinnerLargeur.setSelection(adapterLargeur.getPosition(MParametres.instance.getParametresPartie().getLargeur()));
+        spinnerPourGagner.setSelection(adapterPourGagner.getPosition(MParametres.instance.getParametresPartie().getPourGagner()));
 
         spinnerHauteur.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
@@ -77,7 +77,7 @@ public class VParametres extends Vue{
                 Action actionHauteur = ControleurAction.demanderAction(GCommande.CHOISIR_HAUTEUR);
 
                 Integer choixHauteur = (Integer) parent.getAdapter().getItem(position);
-                MParametres.instance.setHauteur(choixHauteur);
+                MParametres.instance.getParametresPartie().setHauteur(choixHauteur);
 
                 actionHauteur.setArguments(choixHauteur);
                 actionHauteur.executerDesQuePossible();
@@ -95,7 +95,7 @@ public class VParametres extends Vue{
                 Action actionLargeur = ControleurAction.demanderAction(GCommande.CHOISIR_LARGEUR);
 
                 Integer choixLargeur = (Integer) parent.getAdapter().getItem(position);
-                MParametres.instance.setLargeur(choixLargeur);
+                MParametres.instance.getParametresPartie().setLargeur(choixLargeur);
 
                 actionLargeur.setArguments(choixLargeur);
                 actionLargeur.executerDesQuePossible();
@@ -113,7 +113,7 @@ public class VParametres extends Vue{
                 Action actionPourGagner = ControleurAction.demanderAction(GCommande.CHOISIR_POUR_GAGNER);
 
                 Integer choixPourGagner = (Integer) parent.getAdapter().getItem(position);
-                MParametres.instance.setPourGagner(choixPourGagner);
+                MParametres.instance.getParametresPartie().setPourGagner(choixPourGagner);
 
                 actionPourGagner.setArguments(choixPourGagner);
                 actionPourGagner.executerDesQuePossible();
