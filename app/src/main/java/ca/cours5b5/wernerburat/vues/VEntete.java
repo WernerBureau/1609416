@@ -23,5 +23,6 @@ public class VEntete extends AppCompatButton {
         super(context);
 
         this.colonne = colonne;
+        setText(colonne + "\n↓" + "\n↓");
     }
 }

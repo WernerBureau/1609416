@@ -25,5 +25,8 @@ public class VCase extends AppCompatButton {
 
         this.colonne = colonne;
         this.rangee = rangee;
+
+        setText(""+rangee + "," + colonne);
+        setEnabled(false);
     }
 }
