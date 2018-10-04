@@ -24,6 +24,7 @@ public class ControleurObservation {
         }
 
         else if (nomModele.equals("MPartie")){
+            partie = new MPartie(MParametres.instance.getParametresPartie().cloner());
             observations.put(ControleurObservation.partie, listenerObservateur);
             lancerObservationPremiereFois(ControleurObservation.partie);
         }

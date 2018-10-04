@@ -28,11 +28,13 @@ public class VPartie extends Vue {
     @Override
     protected void onFinishInflate(){
         super.onFinishInflate();
+        initialiser();
+        observerPartie();
 
     }
 
     private void initialiser(){
-        grille.findViewById(R.id.grille);
+        grille = this.findViewById(R.id.grille);
     }
 
     private void observerPartie(){
@@ -61,7 +63,8 @@ public class VPartie extends Vue {
     private void initialiserGrille (MPartie partie){
         int hauteur = partie.getParametres().getHauteur();
         int largeur = partie.getParametres().getLargeur();
-        int pourGagner = partie.getParametres().getPourGagner();
+
+        grille.creerGrille(hauteur, largeur);
     }
 
     private void afficherParametres(MPartie partie) {

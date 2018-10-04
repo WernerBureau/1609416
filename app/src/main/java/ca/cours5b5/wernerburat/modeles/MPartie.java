@@ -13,7 +13,7 @@ public class MPartie extends Modele implements Fournisseur{
     private final String __parametres = "parametres";
 
     public MPartie (MParametresPartie parametres){
-        MPartie mPartie = new MPartie(parametres);
+        this.parametres = parametres;
     }
 
     public MParametresPartie getParametres(){
