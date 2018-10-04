@@ -2,6 +2,7 @@ package ca.cours5b5.wernerburat.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.GridLayout;
 
@@ -31,6 +32,7 @@ public class VGrille extends GridLayout {
     @Override
     protected void onFinishInflate(){
         super.onFinishInflate();
+        Log.d("Atelier06", "Appellation de VGrille::onFinishInflate");
     }
 
     private void initialiser(){

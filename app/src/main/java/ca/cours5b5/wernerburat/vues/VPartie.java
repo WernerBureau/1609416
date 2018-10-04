@@ -2,6 +2,7 @@ package ca.cours5b5.wernerburat.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 
 import ca.cours5b5.wernerburat.R;
 import ca.cours5b5.wernerburat.controleurs.ControleurObservation;
@@ -28,6 +29,7 @@ public class VPartie extends Vue {
     @Override
     protected void onFinishInflate(){
         super.onFinishInflate();
+        Log.d("Atelier06", "Appellation de VPartie::onFinishInflate");
         initialiser();
         observerPartie();
 
