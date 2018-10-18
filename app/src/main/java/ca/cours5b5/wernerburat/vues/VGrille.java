@@ -4,10 +4,18 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.GridLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import ca.cours5b5.wernerburat.controleurs.Action;
+import ca.cours5b5.wernerburat.controleurs.ControleurAction;
+import ca.cours5b5.wernerburat.global.GCommande;
+import ca.cours5b5.wernerburat.global.GCouleur;
+import ca.cours5b5.wernerburat.modeles.MColonne;
+import ca.cours5b5.wernerburat.modeles.MGrille;
 
 public class VGrille extends GridLayout {
     public VGrille(Context context) {
@@ -22,12 +30,9 @@ public class VGrille extends GridLayout {
         super(context, attrs, defStyleAttr);
     }
 
-    private int nombreRangees;
+    private Action actionEnTete;
 
-    private class Colonne extends ArrayList<VCase> {}
-
-    private List<Colonne> colonnesDeCases;
-    private List<VEntete> entetes;
+    private VCase[][] tabCases;
 
     @Override
     protected void onFinishInflate(){
@@ -35,26 +40,22 @@ public class VGrille extends GridLayout {
         Log.d("Atelier06", "Appellation de VGrille::onFinishInflate");
     }
 
-    private void initialiser(){
-
-    }
-
     void creerGrille(int hauteur, int largeur){
+        tabCases = new VCase[hauteur][largeur];
         ajouterEnTetes(largeur);
         ajouterCases(hauteur, largeur);
-    }
-
-    private void initialiserColonnes(int largeur){
-
     }
 
     private void ajouterEnTetes(int largeur){
 
         for (int i = 0; i < largeur; i++ ){
             VEntete entete = new VEntete(getContext(), i);
+            installerListenerEntete(entete, i);
             addView(entete, getMiseEnPageEntete(i));
         }
+        demanderActionEntete();
     }
+
 
     private LayoutParams getMiseEnPageEntete(int colonne) {
         int rangee = 0;
@@ -79,8 +80,37 @@ public class VGrille extends GridLayout {
             for(int j =0; j<largeur; j++){
                 VCase caseTemp = new VCase(getContext(), j, (hauteur-i));
                 addView(caseTemp, getMiseEnPageCase(i, j));
+                tabCases[hauteur-i][j] = caseTemp;
             }
         }
+    }
+
+    private void demanderActionEntete(){
+        actionEnTete = ControleurAction.demanderAction(GCommande.JOUER_COUP_ICI);
+    }
+
+    private void installerListenerEntete(VEntete entete, final int colonne){
+        entete.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                actionEnTete.setArguments(colonne);
+                actionEnTete.executerDesQuePossible();
+            }
+        });
+    }
+
+    void afficherJetons(MGrille grille){
+        List<MColonne> listeColonne = grille.getColonnes();
+        for (int i = 0; i < listeColonne.size(); i++){
+            MColonne colonneActuelle = listeColonne.get(i);
+            for (int j = 0; j < colonneActuelle.getJetons().size(); j++){
+                afficherJeton(i,j,colonneActuelle.getJetons().get(j));
+            }
+        }
+    }
+
+    private void afficherJeton(int colonne, int rangee, GCouleur jeton){
+        tabCases[rangee][colonne].afficherJeton(jeton);
     }
 
     private LayoutParams getMiseEnPageCase(int rangee, int colonne){

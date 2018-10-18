@@ -1,8 +1,11 @@
 package ca.cours5b5.wernerburat.vues;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
+
+import ca.cours5b5.wernerburat.global.GCouleur;
 
 public class VCase extends AppCompatButton {
     public VCase(Context context) {
@@ -28,5 +31,13 @@ public class VCase extends AppCompatButton {
 
         setText(""+rangee + "," + colonne);
         setEnabled(false);
+    }
+
+    public void afficherJeton(GCouleur jeton){
+        if(jeton.equals(GCouleur.JAUNE)){
+            this.setBackgroundColor(Color.YELLOW);
+        } else {
+            this.setBackgroundColor(Color.RED);
+        }
     }
 }
