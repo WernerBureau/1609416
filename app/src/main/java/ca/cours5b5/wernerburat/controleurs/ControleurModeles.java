@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.wernerburat.controleurs.interfaces.Fournisseur;
+import ca.cours5b5.wernerburat.donnees.Serveur;
 import ca.cours5b5.wernerburat.donnees.SourceDeDonnees;
 import ca.cours5b5.wernerburat.exceptions.ErreurModele;
 import ca.cours5b5.wernerburat.modeles.MParametres;
@@ -31,6 +32,7 @@ public final class ControleurModeles {
 
         listeDeSauvegardes = new ArrayList<>();
         listeDeSauvegardes.add(Disque.getInstance());
+        listeDeSauvegardes.add(Serveur.getInstance());
 
     }
 

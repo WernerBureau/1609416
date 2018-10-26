@@ -1,6 +1,11 @@
 package ca.cours5b5.wernerburat.donnees;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Map;
+
+import ca.cours5b5.wernerburat.controleurs.ControleurModeles;
 
 public final class Serveur extends SourceDeDonnees {
     /*
@@ -17,7 +22,8 @@ public final class Serveur extends SourceDeDonnees {
 
     @Override
     public void sauvegarderModele(String cheminSauvegarde, Map<String, Object> objetJson){
-
+        DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
+        noeud.setValue(objetJson);
     }
 
     @Override
