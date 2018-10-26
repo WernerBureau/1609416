@@ -4,7 +4,10 @@ import android.content.Context;
 import android.support.v7.widget.AppCompatButton;
 import android.util.AttributeSet;
 
+import ca.cours5b5.wernerburat.R;
+
 public class VEntete extends AppCompatButton {
+
     public VEntete(Context context) {
         super(context);
     }
@@ -22,7 +25,12 @@ public class VEntete extends AppCompatButton {
     public VEntete(Context context, int colonne) {
         super(context);
 
+        setText(colonne + "\n" + getResources().getString(R.string.entete));
+
         this.colonne = colonne;
-        setText(colonne + "\n↓" + "\n↓");
+    }
+
+    public int getColonne() {
+        return colonne;
     }
 }

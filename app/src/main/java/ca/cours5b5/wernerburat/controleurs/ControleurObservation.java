@@ -4,44 +4,45 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerObservateur;
-import ca.cours5b5.wernerburat.modeles.MParametres;
-import ca.cours5b5.wernerburat.modeles.MPartie;
 import ca.cours5b5.wernerburat.modeles.Modele;
 
-public class ControleurObservation {
+public final class ControleurObservation {
+
+    private ControleurObservation(){}
+
     private static Map<Modele, ListenerObservateur> observations;
-    private static MPartie partie;
 
     static {
+
         observations = new HashMap<>();
-    }
-
-    public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur){
-
-        if (nomModele.equals("MParametres")) {
-            observations.put(MParametres.instance, listenerObservateur);
-            lancerObservationPremiereFois(MParametres.instance);
-        }
-
-        else if (nomModele.equals("MPartie")){
-            partie = new MPartie(MParametres.instance.getParametresPartie().cloner());
-            observations.put(ControleurObservation.partie, listenerObservateur);
-            lancerObservationPremiereFois(ControleurObservation.partie);
-        }
 
     }
 
-    public static void lancerObservation(Modele modele){
-        ListenerObservateur listenerObservateur = observations.get(modele);
+    public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
+
+        Modele modele = ControleurModeles.getModele(nomModele);
+
+        observations.put(modele, listenerObservateur);
+
+        listenerObservateur.reagirNouveauModele(modele);
+
+    }
+
+    public static void lancerObservation(Modele modele) {
+
+        final ListenerObservateur listenerObservateur = observations.get(modele);
+
         if (listenerObservateur != null) {
+
             listenerObservateur.reagirChangementAuModele(modele);
+
         }
     }
 
-    public static void lancerObservationPremiereFois(Modele modele){
-        ListenerObservateur listenerObservateur = observations.get(modele);
-        if (listenerObservateur != null) {
-            listenerObservateur.reagirNouveauModele(modele);
-        }
+    public static void detruireObservation(Modele modele) {
+
+        observations.remove(modele);
+
     }
+
 }

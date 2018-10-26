@@ -1,11 +1,16 @@
 package ca.cours5b5.wernerburat.exceptions;
 
-public class ErreurObservation extends RuntimeException {
-    public ErreurObservation(Exception e){
 
+import java.util.Map;
+
+public class ErreurObservation extends RuntimeException {
+
+    public ErreurObservation(Exception e){
+        super(e);
     }
 
     public ErreurObservation(String message){
-        message = "Erreur d'observation";
+        super(message);
     }
+
 }

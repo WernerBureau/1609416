@@ -3,7 +3,7 @@ package ca.cours5b5.wernerburat.modeles;
 import java.util.HashMap;
 import java.util.Map;
 
-import ca.cours5b5.wernerburat.exceptions.ErreurDeSerialisation;
+import ca.cours5b5.wernerburat.exceptions.ErreurSerialisation;
 import ca.cours5b5.wernerburat.global.GConstantes;
 import ca.cours5b5.wernerburat.serialisation.AttributSerialisable;
 
@@ -21,63 +21,91 @@ public class MParametresPartie extends Modele {
     public Integer pourGagner;
     protected final String __pourGagner = "pourGagner";
 
-    public static MParametresPartie aPartirMParametres(MParametres mParametres){
-        MParametresPartie mParametresPartie;
-        mParametresPartie = mParametres.parametresPartie.cloner();
 
-        return mParametresPartie;
+    public MParametresPartie(){
+        super();
+
+        hauteur = GConstantes.HAUTEUR_PAR_DEFAUT;
+        largeur = GConstantes.LARGEUR_PAR_DEFAUT;
+        pourGagner = GConstantes.POUR_GAGNER_PAR_DEFAUT;
+
     }
 
     public MParametresPartie cloner(){
+
         MParametresPartie mParametresPartie = new MParametresPartie();
-        mParametresPartie.setHauteur(this.getHauteur());
-        mParametresPartie.setLargeur(this.getLargeur());
-        mParametresPartie.setPourGagner(this.getPourGagner());
+
+        mParametresPartie.setHauteur(hauteur);
+        mParametresPartie.setLargeur(largeur);
+        mParametresPartie.setPourGagner(pourGagner);
 
         return mParametresPartie;
+
     }
 
-    public MParametresPartie(){
-        this.hauteur = GConstantes.HAUTEURDEFAUT;
-        this.largeur = GConstantes.LARGEURDEFAUT;
-        this.pourGagner = GConstantes.GAGNERDEFAUT;
-    }
+    public Integer getHauteur() { return hauteur; }
 
-    public Integer getHauteur(){
-        return hauteur;
-    }
-
-    public Integer getLargeur(){
+    public Integer getLargeur() {
         return largeur;
     }
 
-    public Integer getPourGagner(){
+    public Integer getPourGagner() {
         return pourGagner;
     }
 
-    public void setHauteur(int hauteur){
+    public void setHauteur(int hauteur) {
         this.hauteur = hauteur;
     }
 
-    public void setLargeur(int largeur){
+    public void setLargeur(int largeur) {
         this.largeur = largeur;
     }
 
-    public void setPourGagner(int pourGagner){
+    public void setPourGagner(int pourGagner) {
         this.pourGagner = pourGagner;
     }
 
-
-    //Récupérer
     @Override
-    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurDeSerialisation {
+    public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation  {
+        for(Map.Entry<String, Object> entry : objetJson.entrySet()){
 
+            String chaineValeur = (String) entry.getValue();
+
+            switch (entry.getKey()){
+
+                case __hauteur:
+
+                    hauteur = Integer.valueOf(chaineValeur);
+                    break;
+
+                case __largeur:
+
+                    largeur = Integer.valueOf(chaineValeur);
+                    break;
+
+
+                case __pourGagner:
+
+                    pourGagner = Integer.valueOf(chaineValeur);
+                    break;
+
+                default:
+
+                    throw new ErreurSerialisation("Attribut inconnu: " + entry.getKey());
+            }
+        }
     }
 
-    //Sauvegarder
     @Override
-    public Map<String, Object> enObjetJson() throws ErreurDeSerialisation {
+    public Map<String, Object> enObjetJson() throws ErreurSerialisation  {
         Map<String, Object> objetJson = new HashMap<>();
+
+        objetJson.put(__hauteur, hauteur.toString());
+        objetJson.put(__largeur, largeur.toString());
+        objetJson.put(__pourGagner, pourGagner.toString());
+
         return objetJson;
+
     }
+
 }

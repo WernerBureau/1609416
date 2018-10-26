@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="lang">Hello!</string>
-    <string name="toWin">To win:</string>
-    <string name="height">Height:</string>
-    <string name="width">Width:</string>
-    <string name="btnParametres">Parameters</string>
-    <string name="btnPartie">Play</string>
-</resources>
