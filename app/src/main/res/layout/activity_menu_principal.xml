@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ca.cours5b5.wernerburat.activites.AMenuPrincipal">
+    tools:context="ca.cours5b5.wernerburat.activites.AMenuPrincipal"
+    tools:layout_editor_absoluteY="81dp">
 
     <Button
         android:id="@+id/bouton_parametres"
@@ -12,13 +13,17 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/parametres"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bouton_partie" />
+        app:layout_constraintTop_toBottomOf="@+id/bouton_partie"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="372dp" />
 
     <Button
         android:id="@+id/bouton_partie"
@@ -32,5 +37,23 @@
         app:layout_constraintBottom_toTopOf="@+id/bouton_parametres"
         app:layout_constraintEnd_toEndOf="@+id/bouton_parametres"
         app:layout_constraintStart_toStartOf="@+id/bouton_parametres"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/bouton_connexion" />
+
+    <Button
+        android:id="@+id/bouton_connexion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/connexion"
+        app:layout_constraintBottom_toTopOf="@+id/bouton_partie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="84dp" />
 </ca.cours5b5.wernerburat.vues.VMenuPrincipal>

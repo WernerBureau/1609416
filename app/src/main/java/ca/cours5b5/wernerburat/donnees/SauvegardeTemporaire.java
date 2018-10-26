@@ -43,4 +43,9 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
         }
     }
 
+    @Override
+    public void detruireSauvegarde(String cheminSauvegarde){
+
+    }
+
 }

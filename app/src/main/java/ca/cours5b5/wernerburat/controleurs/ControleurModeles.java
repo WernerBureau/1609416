@@ -13,6 +13,7 @@ import ca.cours5b5.wernerburat.modeles.MParametresPartie;
 import ca.cours5b5.wernerburat.modeles.MPartie;
 import ca.cours5b5.wernerburat.modeles.Modele;
 import ca.cours5b5.wernerburat.donnees.Disque;
+import ca.cours5b5.wernerburat.usagers.UsagerCourant;
 
 public final class ControleurModeles {
 
@@ -136,4 +137,7 @@ public final class ControleurModeles {
         }
     }
 
+    private static String getCheminSauvegarde(String nomModele){
+        return nomModele + "/" + UsagerCourant.getId();
+    }
 }
