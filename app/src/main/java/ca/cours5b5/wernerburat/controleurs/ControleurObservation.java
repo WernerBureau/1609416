@@ -3,6 +3,7 @@ package ca.cours5b5.wernerburat.controleurs;
 import java.util.HashMap;
 import java.util.Map;
 
+import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerGetModele;
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.wernerburat.modeles.Modele;
 
@@ -18,9 +19,9 @@ public final class ControleurObservation {
 
     }
 
-    public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
+    public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur, final ListenerGetModele listenerGetModele) {
 
-        Modele modele = ControleurModeles.getModele(nomModele);
+        Modele modele = ControleurModeles.getModele(nomModele, listenerGetModele);
 
         observations.put(modele, listenerObservateur);
 

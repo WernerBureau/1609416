@@ -27,7 +27,7 @@ public final class Serveur extends SourceDeDonnees {
     }
 
     @Override
-    public Map<String, Object> chargerModele(String cheminSauvegarde){
+    public Map<String, Object> chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement){
         return null;
     }
 

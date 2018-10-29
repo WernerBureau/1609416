@@ -2,9 +2,13 @@ package ca.cours5b5.wernerburat.activites;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,12 +105,20 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     }
 
     private void etablirConnexion() {
-        Intent intentionConnexion = AuthUI.getInstance()
-                .createSignInIntentBuilder()
-                .setAvailableProviders(fournisseursDeConnexion)
-                .build();
 
-        this.startActivityForResult(intentionConnexion, GConstantes.CODE_CONNEXION_FIREBASE);
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            Intent intentionConnexion = AuthUI.getInstance()
+                    .createSignInIntentBuilder()
+                    .setAvailableProviders(fournisseursDeConnexion)
+                    .build();
+
+            this.startActivityForResult(intentionConnexion, GConstantes.CODE_CONNEXION_FIREBASE);
+        }
+
+        else {
+            AuthUI.getInstance().signOut(getApplicationContext());
+        }
+
     }
 
     @Override
