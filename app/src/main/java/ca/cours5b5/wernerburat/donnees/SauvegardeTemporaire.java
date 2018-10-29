@@ -5,6 +5,7 @@ import android.os.Bundle;
 import java.util.Map;
 
 
+import ca.cours5b5.wernerburat.exceptions.ErreurModele;
 import ca.cours5b5.wernerburat.serialisation.Jsonification;
 
 public class SauvegardeTemporaire extends SourceDeDonnees {
@@ -16,7 +17,7 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
     }
 
     @Override
-    public Map<String, Object> chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
+    public void chargerModele(String cheminSauvegarde, ListenerChargement listenerChargement) {
 
         if(bundle != null && bundle.containsKey(cheminSauvegarde)){
 
@@ -24,11 +25,10 @@ public class SauvegardeTemporaire extends SourceDeDonnees {
 
             Map<String, Object> objetJson = Jsonification.aPartirChaineJson(json);
 
-            return objetJson;
+            listenerChargement.reagirSucces(objetJson);
 
         }else{
-
-            return null;
+            listenerChargement.reagirErreur(new ErreurModele("Clé inexistante"));
 
         }
     }

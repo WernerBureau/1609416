@@ -19,13 +19,16 @@ public final class ControleurObservation {
 
     }
 
-    public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur, final ListenerGetModele listenerGetModele) {
+    public static void observerModele(String nomModele, final ListenerObservateur listenerObservateur) {
 
-        Modele modele = ControleurModeles.getModele(nomModele, listenerGetModele);
+        ControleurModeles.getModele(nomModele, new ListenerGetModele() {
+            @Override
+            public void reagirAuModele(Modele modele) {
+                observations.put(modele, listenerObservateur);
 
-        observations.put(modele, listenerObservateur);
-
-        listenerObservateur.reagirNouveauModele(modele);
+                listenerObservateur.reagirNouveauModele(modele);
+            }
+        });
 
     }
 
