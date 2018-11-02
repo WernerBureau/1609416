@@ -9,6 +9,10 @@ public abstract class SourceDeDonnees {
 
     public abstract void chargerModele(final String cheminSauvegarde, final ListenerChargement listenerChargement);
 
+    protected String getNomModele(String cheminDeSauvegarde){
+        return cheminDeSauvegarde.split("/")[0];
+    }
+
     public abstract void detruireSauvegarde(final String cheminSauvegarde);
 
 }

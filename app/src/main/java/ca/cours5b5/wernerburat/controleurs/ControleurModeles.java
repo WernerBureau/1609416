@@ -1,5 +1,7 @@
 package ca.cours5b5.wernerburat.controleurs;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,13 +49,17 @@ public final class ControleurModeles {
 
     public static void sauvegarderModeleDansCetteSource(String nomModele, SourceDeDonnees sourceDeDonnees) {
 
+        Log.d("Atelier11", "sauvegarderModeleDansCetteSource");
+
         Modele modele = modelesEnMemoire.get(nomModele);
+
+        String cheminDeSauvegarde = getCheminSauvegarde(nomModele);
 
         if(modele != null){
 
             Map<String, Object> objetJson = modele.enObjetJson();
 
-            sourceDeDonnees.sauvegarderModele(nomModele, objetJson);
+            sourceDeDonnees.sauvegarderModele(cheminDeSauvegarde, objetJson);
 
         }
     }
