@@ -121,6 +121,14 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
 
     }
 
+    private void fournirActionJoindreOuCreerPartieReseau(){
+
+    }
+
+    private void transitionPartieReseau(){
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == GConstantes.CODE_CONNEXION_FIREBASE) {

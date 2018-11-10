@@ -7,6 +7,7 @@ import android.util.Log;
 import ca.cours5b5.wernerburat.R;
 import ca.cours5b5.wernerburat.controleurs.ControleurObservation;
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerObservateur;
+import ca.cours5b5.wernerburat.donnees.SourceDeDonnees;
 import ca.cours5b5.wernerburat.exceptions.ErreurObservation;
 import ca.cours5b5.wernerburat.modeles.MParametresPartie;
 import ca.cours5b5.wernerburat.modeles.MPartie;
@@ -91,6 +92,10 @@ public class VPartie extends Vue {
 
         }
 
+    }
+
+    protected String getNomModele(){
+        return null;
     }
 
     private void miseAJourGrille(MPartie partie){
