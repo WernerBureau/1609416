@@ -1,52 +1,78 @@
 package ca.cours5b5.wernerburat.controleurs;
 
+import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerGetModele;
+import ca.cours5b5.wernerburat.global.GCommande;
+import ca.cours5b5.wernerburat.global.GConstantes;
+import ca.cours5b5.wernerburat.modeles.MPartieReseau;
+import ca.cours5b5.wernerburat.modeles.Modele;
 import ca.cours5b5.wernerburat.proxy.ProxyListe;
+import ca.cours5b5.wernerburat.usagers.UsagerCourant;
 
 public final class ControleurPartieReseau {
-    private static final ControleurPartieReseau instance;
-    public static ControleurPartieReseau getInstance();
+    private static final ControleurPartieReseau instance = new ControleurPartieReseau();
+    public static ControleurPartieReseau getInstance(){
+        return instance;
+    }
 
     private ProxyListe proxyEmettreCoups;
     private ProxyListe proxyRecevoirCoups;
 
     public void connecterAuServeur(){
-        //TODO: Obtenir modele MPartieReseau, obtenir ID du modèle (qui est l'ID du host), appeler connecterAuServeur(String idJoueurHote)
+
+        ControleurModeles.getModele(MPartieReseau.class.getSimpleName(), new ListenerGetModele() {
+            @Override
+            public void reagirAuModele(Modele modele) {
+                MPartieReseau mPartieReseau = (MPartieReseau) modele;
+                connecterAuServeur(mPartieReseau.idJoueurHote);
+            }
+        });
     }
 
     private void connecterAuServeur(String idJoueurHote){
-       //TODO: Connecter en tant que joueur hôte OU en tant qu'invité, selon le cas.
-        //TODO: Connecter les deux proxy au serveur, ajouter l'action RECEVOIR_COUP_RESEAU au proxyRecevoirCoups
+        String cheminCoupJoueurHote = getCheminCoupsJoueurHote(idJoueurHote);
+        String cheminCoupJoueurInvite = getCheminCoupsJoueurInvite(idJoueurHote);
+
+        if(UsagerCourant.getId().equals(idJoueurHote)){
+            connecterEnTantQueJoueurHote(cheminCoupJoueurHote,cheminCoupJoueurInvite);
+        }else{
+            connecterEnTantQueJoueurInvite(cheminCoupJoueurHote,cheminCoupJoueurInvite);
+        }
+
+
+        proxyRecevoirCoups.setActionNouvelItem(GCommande.RECEVOIR_COUP_RESEAU);
+        proxyRecevoirCoups.connecterAuServeur();
+        proxyEmettreCoups.connecterAuServeur();
     }
 
     private void connecterEnTantQueJoueurHote(String cheminCoupsJoueurHote, String cheminCoupsJoueurInvite){
-        //TODO: Créer les proxy... avec les bons chemins
+        proxyEmettreCoups = new ProxyListe(cheminCoupsJoueurHote);
+        proxyRecevoirCoups = new ProxyListe(cheminCoupsJoueurInvite);
     }
 
     private void connecterEnTantQueJoueurInvite(String cheminCoupsJoueurHote, String cheminCoupsJoueurInvite){
-        //TODO: Créer les proxy... avec les bons chemins
+        proxyEmettreCoups = new ProxyListe(cheminCoupsJoueurInvite);
+        proxyRecevoirCoups = new ProxyListe(cheminCoupsJoueurHote);
     }
 
     public void deconnecterDuServeur(){
-        //TODO: Détruire les valeurs du proxyEmettreCoups, déconnecter les deux proxy.
+        proxyEmettreCoups.deconnecterDuServeur();
+        proxyRecevoirCoups.deconnecterDuServeur();
     }
 
     public void transmettreCoup(Integer idColonne){
-        //TODO: Transmettre avec proxyEmettreCoups
+        proxyEmettreCoups.ajouterValeur(idColonne);
     }
 
     private String getCheminCoupsJoueurInvite(String idJoueurHote){
-        //TODO: Utiliser p.ex la constante CLE_COUPS_JOUEUR_INVITE
-        return null;
+        return getCheminPartie(idJoueurHote) + "/" + GConstantes.CLE_COUPS_JOUEUR_INVITE;
     }
 
     private String getCheminCoupsJoueurHote(String idJoueurHote){
-        //TODO: Utiliser p.ex la constante CLE_COUPS_JOUEUR_HOTE
-        return null;
+        return getCheminPartie(idJoueurHote) + "/" + GConstantes.CLE_COUPS_JOUEUR_HOTE;
     }
 
     private String getCheminPartie(String idJoueurHote){
-        //TODO: retourner chemin qui contient l'ID de la partie (id du joueur host)
-        return null;
+        return MPartieReseau.class.getSimpleName() + "/" + idJoueurHote;
     }
 
     public void detruireSauvegardeServeur(){

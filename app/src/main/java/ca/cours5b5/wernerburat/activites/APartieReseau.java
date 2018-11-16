@@ -3,6 +3,7 @@ package ca.cours5b5.wernerburat.activites;
 import android.os.Bundle;
 
 import ca.cours5b5.wernerburat.R;
+import ca.cours5b5.wernerburat.controleurs.ControleurPartieReseau;
 import ca.cours5b5.wernerburat.controleurs.interfaces.Fournisseur;
 
 public class APartieReseau extends Activite implements Fournisseur {
@@ -16,18 +17,18 @@ public class APartieReseau extends Activite implements Fournisseur {
     @Override
     protected void onPause() {
         super.onPause();
-        //TODO: Avec ControleurPartieReseau, détruire la partie sur le serveur, Déconnecter ControleurPartieReseau du serveur
+        ControleurPartieReseau.getInstance().detruireSauvegardeServeur();
+        ControleurPartieReseau.getInstance().deconnecterDuServeur();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        //TODO: Connecter le ControleurPartieReseau au serveur
+        ControleurPartieReseau.getInstance().connecterAuServeur();
     }
 
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        //TODO: BONUS - Avec ControleurModeles, détruire le modèle MPartieReseau
     }
 }

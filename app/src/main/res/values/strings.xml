@@ -14,6 +14,7 @@
     <string name="parametres">Parametres</string>
 
     <string name="jouer">Jouer</string>
+    <string name="jouer_en_ligne">Jouer en ligne</string>
 
     <string name="connexion">Connexion</string>
     <string name="deconnexion">Déconnexion</string>

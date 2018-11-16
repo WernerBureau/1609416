@@ -24,11 +24,8 @@ public abstract class Activite extends AppCompatActivity {
 
     protected void initialiserControleurModeles(Bundle savedInstanceState) {
 
-        /*TODO : ajouter Transition dans la séquence de chargement, utiliser les extras de
-                 l'intention pour initialiser Transition
-         */
-
         ControleurModeles.setSequenceDeChargement(
+                new Transition(getIntent().getExtras()),
                 new SauvegardeTemporaire(savedInstanceState),
                 Serveur.getInstance(),
                 Disque.getInstance());

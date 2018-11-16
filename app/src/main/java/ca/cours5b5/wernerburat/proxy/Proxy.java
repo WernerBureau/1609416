@@ -1,6 +1,7 @@
 package ca.cours5b5.wernerburat.proxy;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public abstract class Proxy {
     private String cheminServeur;
@@ -8,15 +9,16 @@ public abstract class Proxy {
     protected DatabaseReference noeudServeur;
 
     public Proxy(String cheminServeur){
-
+        this.cheminServeur = cheminServeur;
     }
 
     public void connecterAuServeur(){
-        // TODO: Obtenir le noeud
+        noeudServeur = FirebaseDatabase.getInstance().getReference(cheminServeur);
     }
 
     public void deconnecterDuServeur(){
-        // TODO: Oublier le noeud
+        noeudServeur = null;
+        detruireValeurs();
     }
 
     public abstract void detruireValeurs();

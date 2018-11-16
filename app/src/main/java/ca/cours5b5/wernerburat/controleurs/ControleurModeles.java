@@ -17,6 +17,7 @@ import ca.cours5b5.wernerburat.exceptions.ErreurSerialisation;
 import ca.cours5b5.wernerburat.modeles.MParametres;
 import ca.cours5b5.wernerburat.modeles.MParametresPartie;
 import ca.cours5b5.wernerburat.modeles.MPartie;
+import ca.cours5b5.wernerburat.modeles.MPartieReseau;
 import ca.cours5b5.wernerburat.modeles.Modele;
 import ca.cours5b5.wernerburat.donnees.Disque;
 import ca.cours5b5.wernerburat.usagers.UsagerCourant;
@@ -95,7 +96,7 @@ public final class ControleurModeles {
             MParametres mParametres = new MParametres();
             listenerGetModele.reagirAuModele(mParametres);
 
-        }else if(nomModele.equals(MPartie.class.getSimpleName())){
+        }else if(nomModele.equals(MPartie.class.getSimpleName())) {
 
             getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
                 @Override
@@ -106,7 +107,20 @@ public final class ControleurModeles {
                 }
             });
 
-        }else{
+        } else if (nomModele.equals(MPartieReseau.class.getSimpleName())) {
+
+                getModele(MParametres.class.getSimpleName(), new ListenerGetModele() {
+                    @Override
+                    public void reagirAuModele(Modele modele) {
+                        MParametres mParametres = (MParametres) modele;
+                        MPartieReseau mPartieReseau = new MPartieReseau(mParametres.getParametresPartie().cloner());
+                        listenerGetModele.reagirAuModele(mPartieReseau);
+
+                    }
+                });
+
+
+            }else{
 
             throw new ErreurModele("Modèle inconnu: " + nomModele);
 

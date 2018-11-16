@@ -95,7 +95,7 @@ public class VPartie extends Vue {
     }
 
     protected String getNomModele(){
-        return null;
+        return MPartie.class.getSimpleName();
     }
 
     private void miseAJourGrille(MPartie partie){

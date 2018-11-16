@@ -28,6 +28,6 @@ public final class GConstantes {
     public static final String CLE_COUPS_JOUEUR_INVITE = "coupsJoueurInvite";
 
     // TODO: remplacer les IDs par ceux des 2 usagers de test
-    public static final String FIXME_JSON_PARTIE_RESEAU = "{\"listeCoups\":[],\"parametres\":{\"largeur\":\"7\",\"pourGagner\":\"4\",\"hauteur\":\"6\"},\"idJoueurInvite\":\"PHMRKe3q7zOhfQQOwemjtfBFNp12\",\"idJoueurHote\":\"T1m8GxiBA1hLUcF6Ne0GV06nnEg1\"}";
+    public static final String FIXME_JSON_PARTIE_RESEAU = "{\"listeCoups\":[], \"parametres\":{\"largeur\":\"7\",\"pourGagner\":\"4\",\"hauteur\":\"6\"},\"idJoueurInvite\":\"qmIv8oLCE6fYzkjz3U9kjU0Ha9E2\",\"idJoueurHote\":\"XDx0qCiRaUQIlaOQdckGCHy1j323\"}";
 
 }
