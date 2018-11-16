@@ -14,6 +14,7 @@ import ca.cours5b5.wernerburat.donnees.Serveur;
 import ca.cours5b5.wernerburat.donnees.SourceDeDonnees;
 import ca.cours5b5.wernerburat.exceptions.ErreurModele;
 import ca.cours5b5.wernerburat.exceptions.ErreurSerialisation;
+import ca.cours5b5.wernerburat.modeles.Identifiable;
 import ca.cours5b5.wernerburat.modeles.MParametres;
 import ca.cours5b5.wernerburat.modeles.MParametresPartie;
 import ca.cours5b5.wernerburat.modeles.MPartie;
@@ -208,6 +209,16 @@ public final class ControleurModeles {
     }
 
     private static String getCheminSauvegarde(String nomModele){
-        return nomModele + "/" + UsagerCourant.getId();
+        String resultat;
+
+        Modele modele = modelesEnMemoire.get(nomModele);
+
+        if(modele!=null && modele instanceof Identifiable){
+            resultat = nomModele + "/" + ((Identifiable) modele).getId();
+        }else{
+            resultat = nomModele + "/" + UsagerCourant.getId();
+        }
+
+        return resultat;
     }
 }

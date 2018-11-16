@@ -22,7 +22,9 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
     private String __idJoueurHote = "idJoueurHote";
 
     public MPartieReseau(MParametresPartie parametres){
+
         super(parametres);
+        fournirActionRecevoirCoup();
     }
 
     @Override

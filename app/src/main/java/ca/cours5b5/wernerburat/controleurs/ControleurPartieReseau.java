@@ -1,5 +1,7 @@
 package ca.cours5b5.wernerburat.controleurs;
 
+import android.util.Log;
+
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerGetModele;
 import ca.cours5b5.wernerburat.global.GCommande;
 import ca.cours5b5.wernerburat.global.GConstantes;
@@ -23,6 +25,9 @@ public final class ControleurPartieReseau {
             @Override
             public void reagirAuModele(Modele modele) {
                 MPartieReseau mPartieReseau = (MPartieReseau) modele;
+
+                Log.d("testConnexion", mPartieReseau.getId());
+
                 connecterAuServeur(mPartieReseau.idJoueurHote);
             }
         });
@@ -31,6 +36,8 @@ public final class ControleurPartieReseau {
     private void connecterAuServeur(String idJoueurHote){
         String cheminCoupJoueurHote = getCheminCoupsJoueurHote(idJoueurHote);
         String cheminCoupJoueurInvite = getCheminCoupsJoueurInvite(idJoueurHote);
+
+        Log.d("testConnexionServeur", UsagerCourant.getId());
 
         if(UsagerCourant.getId().equals(idJoueurHote)){
             connecterEnTantQueJoueurHote(cheminCoupJoueurHote,cheminCoupJoueurInvite);
