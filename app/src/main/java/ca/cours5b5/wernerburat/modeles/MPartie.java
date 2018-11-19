@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import ca.cours5b5.wernerburat.controleurs.ControleurAction;
+import ca.cours5b5.wernerburat.controleurs.interfaces.ControleurPartie;
 import ca.cours5b5.wernerburat.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.wernerburat.exceptions.ErreurAction;
@@ -85,6 +86,10 @@ public class MPartie extends Modele implements Fournisseur {
             listeCoups.add(colonne);
 
             grille.placerJeton(colonne, couleurCourante);
+
+            if(grille.siCouleurGagne(couleurCourante,parametres.getPourGagner())){
+                ControleurPartie.getInstance().gagnerPartie(couleurCourante);
+            }
 
             prochaineCouleurCourante();
 
