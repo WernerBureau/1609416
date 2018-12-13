@@ -206,6 +206,14 @@ public final class ControleurModeles {
 
             }
         }
+
+        detuireSauvegardes(nomModele);
+    }
+
+    private static void detuireSauvegardes(String nomModele){
+        for(SourceDeDonnees sourceDeDonnees : listeDeSauvegardes){
+            sourceDeDonnees.detruireSauvegarde(getCheminSauvegarde(nomModele));
+        }
     }
 
     private static String getCheminSauvegarde(String nomModele){

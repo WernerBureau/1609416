@@ -2,6 +2,7 @@ package ca.cours5b5.wernerburat.vues;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
@@ -135,6 +136,7 @@ public class VGrille extends GridLayout {
             public void onClick(View v) {
 
                 actionEntete.setArguments(entete.getColonne());
+                Log.d("animation", entete.getColonne() + "");
                 actionEntete.executerDesQuePossible();
                 
             }
@@ -201,7 +203,6 @@ public class VGrille extends GridLayout {
     private void afficherJeton(int colonne, int rangee, GCouleur jeton){
 
         colonnesDeCases.get(colonne).get(rangee).afficherJeton(jeton);
-
     }
 
 }

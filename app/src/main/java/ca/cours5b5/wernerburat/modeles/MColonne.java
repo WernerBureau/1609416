@@ -26,7 +26,6 @@ public class MColonne extends Modele {
     public void placerJeton(GCouleur couleur) {
 
         jetons.add(couleur);
-        Log.d("test", "adding jeton");
 
     }
 

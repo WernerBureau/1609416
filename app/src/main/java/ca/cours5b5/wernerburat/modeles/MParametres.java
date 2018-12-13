@@ -1,12 +1,16 @@
 package ca.cours5b5.wernerburat.modeles;
 
+import android.util.Log;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
 import ca.cours5b5.wernerburat.controleurs.ControleurAction;
+import ca.cours5b5.wernerburat.controleurs.ControleurModeles;
 import ca.cours5b5.wernerburat.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.wernerburat.exceptions.ErreurAction;
@@ -24,6 +28,8 @@ public class MParametres extends Modele implements Fournisseur {
     private List<Integer> choixHauteur;
     private List<Integer> choixLargeur;
     private List<Integer> choixPourGagner;
+
+    private List<String> listeAEffacer = Arrays.asList(MPartie.class.getSimpleName(), MParametres.class.getSimpleName(), MPartieReseau.class.getSimpleName());
 
     public MParametres() {
         super();
@@ -58,6 +64,7 @@ public class MParametres extends Modele implements Fournisseur {
         fournirActionHauteur();
         fournirActionLargeur();
         fournirActionPourGagner();
+        fournirActionEffacer();
 
     }
 
@@ -124,6 +131,24 @@ public class MParametres extends Modele implements Fournisseur {
 
                             throw new ErreurAction(e);
 
+                        }
+                    }
+                });
+    }
+
+    private void fournirActionEffacer() {
+        ControleurAction.fournirAction(this,
+                GCommande.EFFACER_PARTIE_COURANTE,
+                new ListenerFournisseur() {
+                    @Override
+                    public void executer(Object... args) {
+                        try {
+                            for(String modele: listeAEffacer){
+                                Log.d("EffacerListe", modele);
+                                ControleurModeles.detruireModele(modele);
+                            }
+                        } catch (ClassCastException | IndexOutOfBoundsException e){
+                            throw new ErreurAction(e);
                         }
                     }
                 });

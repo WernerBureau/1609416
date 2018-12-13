@@ -56,6 +56,8 @@ public final class Serveur extends SourceDeDonnees {
 
     @Override
     public void detruireSauvegarde(String cheminSauvegarde){
+        DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
+        noeud.removeValue();
 
     }
 }

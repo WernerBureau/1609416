@@ -23,4 +23,5 @@
     <string name="joueur1">player1</string>
     <string name="joueur2">player2</string>
 
+    <string name="effacer_partie_courante">Erase current game</string>
 </resources>

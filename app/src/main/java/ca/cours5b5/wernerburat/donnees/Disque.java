@@ -79,7 +79,7 @@ public final class Disque extends SourceDeDonnees {
 
     @Override
     public void detruireSauvegarde(String cheminSauvegarde){
-
+        getFichier(cheminSauvegarde).delete();
     }
 
 

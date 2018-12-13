@@ -20,4 +20,6 @@ public enum GCommande {
     RECEVOIR_COUP_RESEAU,
 
     AFFICHER_GAGNANT,
+
+    EFFACER_PARTIE_COURANTE,
 }
