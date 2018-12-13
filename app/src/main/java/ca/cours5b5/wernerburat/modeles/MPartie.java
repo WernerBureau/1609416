@@ -114,6 +114,7 @@ public class MPartie extends Modele implements Fournisseur {
 
             case JAUNE:
                 couleurCourante = GCouleur.ROUGE;
+                break;
         }
     }
 
@@ -125,6 +126,8 @@ public class MPartie extends Modele implements Fournisseur {
     public MParametresPartie getParametres() {
         return parametres;
     }
+
+    public GCouleur getCouleurCourante(){ return couleurCourante; }
 
 
     @Override

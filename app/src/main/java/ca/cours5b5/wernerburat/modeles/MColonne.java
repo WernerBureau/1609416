@@ -1,5 +1,7 @@
 package ca.cours5b5.wernerburat.modeles;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +26,7 @@ public class MColonne extends Modele {
     public void placerJeton(GCouleur couleur) {
 
         jetons.add(couleur);
+        Log.d("test", "adding jeton");
 
     }
 

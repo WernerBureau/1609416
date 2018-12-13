@@ -1,14 +1,17 @@
 package ca.cours5b5.wernerburat.vues;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.widget.TextView;
 
 import ca.cours5b5.wernerburat.R;
 import ca.cours5b5.wernerburat.controleurs.ControleurObservation;
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerObservateur;
 import ca.cours5b5.wernerburat.donnees.SourceDeDonnees;
 import ca.cours5b5.wernerburat.exceptions.ErreurObservation;
+import ca.cours5b5.wernerburat.global.GCouleur;
 import ca.cours5b5.wernerburat.modeles.MParametresPartie;
 import ca.cours5b5.wernerburat.modeles.MPartie;
 import ca.cours5b5.wernerburat.modeles.Modele;
@@ -17,6 +20,9 @@ import ca.cours5b5.wernerburat.modeles.Modele;
 public class VPartie extends Vue {
 
     private VGrille grille;
+
+    private TextView joueur1;
+    private TextView joueur2;
 
     public VPartie(Context context) {
         super(context);
@@ -44,6 +50,8 @@ public class VPartie extends Vue {
 
         grille = findViewById(R.id.grille);
 
+        joueur1 = findViewById(R.id.texte_joueur_un);
+        joueur2 = findViewById(R.id.texte_joueur_deux);
     }
 
     private void observerPartie() {
@@ -99,9 +107,22 @@ public class VPartie extends Vue {
     }
 
     private void miseAJourGrille(MPartie partie){
-
         grille.afficherJetons(partie.getGrille());
+        setCouleur(partie.getCouleurCourante());
+    }
 
+    private void setCouleur(GCouleur couleurCourante){
+
+        switch(couleurCourante){
+            case ROUGE:
+                joueur1.setBackgroundColor(Color.RED);
+                joueur2.setBackgroundColor(Color.WHITE);
+                break;
+            case JAUNE:
+                joueur1.setBackgroundColor(Color.WHITE);
+                joueur2.setBackgroundColor(Color.YELLOW);
+                break;
+        }
     }
 
 }
