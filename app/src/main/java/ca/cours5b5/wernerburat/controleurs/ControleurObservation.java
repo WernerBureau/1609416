@@ -44,7 +44,6 @@ public final class ControleurObservation {
     }
 
     public static void detruireObservation(Modele modele) {
-
         observations.remove(modele);
 
     }

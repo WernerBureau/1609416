@@ -136,7 +136,6 @@ public class VGrille extends GridLayout {
             public void onClick(View v) {
 
                 actionEntete.setArguments(entete.getColonne());
-                Log.d("animation", entete.getColonne() + "");
                 actionEntete.executerDesQuePossible();
                 
             }

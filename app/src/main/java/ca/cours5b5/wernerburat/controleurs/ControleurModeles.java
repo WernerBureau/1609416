@@ -212,6 +212,7 @@ public final class ControleurModeles {
 
     private static void detuireSauvegardes(String nomModele){
         for(SourceDeDonnees sourceDeDonnees : listeDeSauvegardes){
+            Log.d("detruireSauvegardes", sourceDeDonnees.toString());
             sourceDeDonnees.detruireSauvegarde(getCheminSauvegarde(nomModele));
         }
     }

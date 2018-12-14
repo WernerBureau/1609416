@@ -6,7 +6,6 @@ import android.os.Bundle;
 import ca.cours5b5.wernerburat.R;
 import ca.cours5b5.wernerburat.controleurs.ControleurModeles;
 import ca.cours5b5.wernerburat.donnees.SauvegardeTemporaire;
-import ca.cours5b5.wernerburat.modeles.MParametres;
 import ca.cours5b5.wernerburat.modeles.MPartie;
 
 public class APartie extends Activite {

@@ -24,4 +24,6 @@
     <string name="joueur2">player2</string>
 
     <string name="effacer_partie_courante">Erase current game</string>
+
+    <string name="erasedMessage">The game has been erased.</string>
 </resources>

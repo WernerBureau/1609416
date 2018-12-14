@@ -25,4 +25,6 @@
     <string name="joueur2">joueur2</string>
 
     <string name="effacer_partie_courante">Effacer partie courante</string>
+
+    <string name="erasedMessage">La partie a été effacée.</string>
 </resources>

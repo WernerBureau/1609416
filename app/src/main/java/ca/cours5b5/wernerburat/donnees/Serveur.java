@@ -1,5 +1,7 @@
 package ca.cours5b5.wernerburat.donnees;
 
+import android.util.Log;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,7 +59,8 @@ public final class Serveur extends SourceDeDonnees {
     @Override
     public void detruireSauvegarde(String cheminSauvegarde){
         DatabaseReference noeud = FirebaseDatabase.getInstance().getReference(cheminSauvegarde);
-        noeud.removeValue();
+        Log.d("serveur", noeud.toString());
+        noeud.setValue(null);
 
     }
 }

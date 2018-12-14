@@ -1,8 +1,9 @@
 package ca.cours5b5.wernerburat.vues;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.support.design.widget.Snackbar;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -161,6 +162,12 @@ public class VParametres extends Vue {
             @Override
             public void onClick(View view) {
                 actionEffacerPartieCourante.executerDesQuePossible();
+
+                Resources res = getResources();
+                String message = res.getString(R.string.erasedMessage);
+                Snackbar fenetreMessage = Snackbar.make(VParametres.this, message, Snackbar.LENGTH_SHORT);
+                fenetreMessage.show();
+
             }
         });
     }

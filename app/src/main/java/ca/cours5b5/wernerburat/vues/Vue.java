@@ -6,7 +6,6 @@ import android.support.design.widget.Snackbar;
 import android.util.AttributeSet;
 
 import ca.cours5b5.wernerburat.controleurs.ControleurAction;
-import ca.cours5b5.wernerburat.controleurs.interfaces.ControleurPartie;
 import ca.cours5b5.wernerburat.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.wernerburat.global.GCommande;
