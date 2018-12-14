@@ -41,7 +41,7 @@ public final class ControleurPartieReseau {
                     mPartieReseau.setNomJoueurHote(joueurHote.getNomJoueur());
                 } else {
                     joueurInvite.setNomJoueur(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-                    mPartieReseau.setNomJoueurInvite(joueurHote.getNomJoueur());
+                    mPartieReseau.setNomJoueurInvite(joueurInvite.getNomJoueur());
                 }
 
                 Log.d("testJoueurs", joueurHote.getNomJoueur() + " " + joueurInvite.getNomJoueur());

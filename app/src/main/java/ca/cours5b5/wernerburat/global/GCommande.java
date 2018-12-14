@@ -22,4 +22,5 @@ public enum GCommande {
     AFFICHER_GAGNANT,
 
     EFFACER_PARTIE_COURANTE,
+    CONNEXION_IMPOSSIBLE,
 }

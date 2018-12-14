@@ -71,7 +71,6 @@ public class VMenuPrincipal extends Vue {
         actionConnexion = ControleurAction.demanderAction(GCommande.CONNEXION);
 
         actionEnLigne = ControleurAction.demanderAction(GCommande.JOINDRE_OU_CREER_PARTIE_RESEAU);
-
     }
 
 
@@ -127,5 +126,4 @@ public class VMenuPrincipal extends Vue {
             }
         });
     }
-
 }

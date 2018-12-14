@@ -1,9 +1,12 @@
 package ca.cours5b5.wernerburat.activites;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
+import android.view.View;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,8 +22,9 @@ import ca.cours5b5.wernerburat.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.wernerburat.global.GCommande;
 import ca.cours5b5.wernerburat.global.GConstantes;
-import ca.cours5b5.wernerburat.modeles.MJoueur;
 import ca.cours5b5.wernerburat.modeles.MPartieReseau;
+import ca.cours5b5.wernerburat.vues.VMenuPrincipal;
+import ca.cours5b5.wernerburat.vues.VParametres;
 
 public class AMenuPrincipal extends Activite implements Fournisseur {
 
@@ -101,9 +105,14 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                 new ListenerFournisseur() {
                     @Override
                     public void executer(Object... args) {
+                        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+                            String message = "You need to login first";
 
-                        transitionPartieReseau();
-
+                            Snackbar fenetreMessage = Snackbar.make(findViewById(R.id.menu_principal), message, Snackbar.LENGTH_SHORT);
+                            fenetreMessage.show();
+                        } else {
+                            transitionPartieReseau();
+                        }
                     }
                 });
     }
@@ -116,17 +125,14 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
     }
 
     private void transitionPartie(){
-
         Intent intentionParametres = new Intent(this, APartie.class);
         startActivity(intentionParametres);
-
     }
 
     private void transitionPartieReseau(){
-
-        Intent intentionPartieReseau = new Intent(this, APartieReseau.class);
-        intentionPartieReseau.putExtra(MPartieReseau.class.getSimpleName(), GConstantes.FIXME_JSON_PARTIE_RESEAU);
-        startActivity(intentionPartieReseau);
+            Intent intentionPartieReseau = new Intent(this, APartieReseau.class);
+            intentionPartieReseau.putExtra(MPartieReseau.class.getSimpleName(), GConstantes.FIXME_JSON_PARTIE_RESEAU);
+            startActivity(intentionPartieReseau);
     }
 
     private void etablirConnexion() {

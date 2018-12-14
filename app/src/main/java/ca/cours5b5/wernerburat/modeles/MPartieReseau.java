@@ -1,5 +1,7 @@
 package ca.cours5b5.wernerburat.modeles;
 
+import android.util.Log;
+
 import java.util.Map;
 
 import ca.cours5b5.wernerburat.controleurs.ControleurAction;
@@ -88,6 +90,7 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
 
     public void setNomJoueurHote(String nom) {
         nomJoueurHote = nom;
+        Log.d("loggg", nomJoueurHote);
     }
     public void setNomJoueurInvite(String nom) {
         nomJoueurInvite = nom;
