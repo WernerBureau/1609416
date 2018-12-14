@@ -14,12 +14,16 @@ import ca.cours5b5.wernerburat.serialisation.AttributSerialisable;
 public class MPartieReseau extends MPartie implements Fournisseur, Identifiable {
 
     @AttributSerialisable
-    public String idJoueurInvite;
+    private String idJoueurInvite;
     private String __idJoueurInvite = "idJoueurInvite";
+    private String nomJoueurInvite;
+    private String __nomJoueurInvite = "nomJoueurInvite";
 
     @AttributSerialisable
     public String idJoueurHote;
     private String __idJoueurHote = "idJoueurHote";
+    private String nomJoueurHote;
+    private String __nomJoueurHote = "nomJoueurHote";
 
     public MPartieReseau(MParametresPartie parametres){
 
@@ -82,11 +86,21 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
         jouerCoup(colonne);
     }
 
+    public void setNomJoueurHote(String nom) {
+        nomJoueurHote = nom;
+    }
+    public void setNomJoueurInvite(String nom) {
+        nomJoueurInvite = nom;
+    }
+
     @Override
     public void aPartirObjetJson(Map<String, Object> objetJson) throws ErreurSerialisation {
         super.aPartirObjetJson(objetJson);
         idJoueurHote = (String) objetJson.get(__idJoueurHote);
         idJoueurInvite = (String) objetJson.get(__idJoueurInvite);
+
+        nomJoueurHote = (String) objetJson.get(__nomJoueurHote);
+        nomJoueurInvite = (String) objetJson.get(__nomJoueurInvite);
     }
 
     @Override
@@ -96,6 +110,8 @@ public class MPartieReseau extends MPartie implements Fournisseur, Identifiable 
         objetJson.put(__idJoueurHote, idJoueurHote);
         objetJson.put(__idJoueurInvite, idJoueurInvite);
 
+        objetJson.put(__nomJoueurHote, nomJoueurHote);
+        objetJson.put(__nomJoueurInvite, nomJoueurInvite);
 
         return objetJson;
     }

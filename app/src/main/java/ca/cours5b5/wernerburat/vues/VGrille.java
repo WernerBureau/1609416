@@ -130,7 +130,6 @@ public class VGrille extends GridLayout {
     }
 
     private void installerListenerEntete(final VEntete entete) {
-
         entete.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -19,6 +19,7 @@ import ca.cours5b5.wernerburat.controleurs.interfaces.Fournisseur;
 import ca.cours5b5.wernerburat.controleurs.interfaces.ListenerFournisseur;
 import ca.cours5b5.wernerburat.global.GCommande;
 import ca.cours5b5.wernerburat.global.GConstantes;
+import ca.cours5b5.wernerburat.modeles.MJoueur;
 import ca.cours5b5.wernerburat.modeles.MPartieReseau;
 
 public class AMenuPrincipal extends Activite implements Fournisseur {
@@ -137,6 +138,8 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
                     .build();
 
             this.startActivityForResult(intentionConnexion, GConstantes.CODE_CONNEXION_FIREBASE);
+
+
         }
 
         else {
@@ -151,6 +154,7 @@ public class AMenuPrincipal extends Activite implements Fournisseur {
             if (resultCode == RESULT_OK){
                 // Connexion réussie
                 Log.d("Atelier11", "onActivityResult: Reussi");
+
             } else {
                 // Connexion échouée
                 Log.d("Atelier11", "onActivityResult: Echec");

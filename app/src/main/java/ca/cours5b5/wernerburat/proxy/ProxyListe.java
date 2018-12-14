@@ -27,6 +27,7 @@ public class ProxyListe extends Proxy implements Fournisseur {
     public ProxyListe(String cheminServeur){
         super(cheminServeur);
         noeudsAjoutes = new ArrayList<>();
+
     }
 
     public void setActionNouvelItem(GCommande commande){

@@ -27,6 +27,9 @@ public final class GConstantes {
     public static final String CLE_COUPS_JOUEUR_HOTE = "coupsJoueurHote";
     public static final String CLE_COUPS_JOUEUR_INVITE = "coupsJoueurInvite";
 
+    public static final String CLE_NOM_JOUEUR_HOTE = "nomJoueurHote";
+    public static final String CLE_NOM_JOUEUR_INVITE = "nomJoueurInvite";
+
     // TODO: remplacer les IDs par ceux des 2 usagers de test
     public static final String FIXME_JSON_PARTIE_RESEAU = "{\"listeCoups\":[], \"parametres\":{\"largeur\":\"7\",\"pourGagner\":\"4\",\"hauteur\":\"6\"},\"idJoueurInvite\":\"q5j7miBXk5YayxhyMSdZgIRZWmQ2\",\"idJoueurHote\":\"1RJ3VvCek7bid01O8kdbcpJaKXn2\"}";
 
